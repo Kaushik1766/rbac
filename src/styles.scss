@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+@font-face {
+  font-family: 'KumbhSans';
+  src: url('/fonts/KumbhSans.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+* {
+  font-family: 'KumbhSans';
+}

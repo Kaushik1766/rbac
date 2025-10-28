@@ -1,1 +1,24 @@
-<p>signup works!</p>
+<div class="form-container">
+  <h1>Signup</h1>
+  <p>Welcome onboard!</p>
+  <form [formGroup]="signupFormGroup" (ngSubmit)="signup()">
+    <p-float-label variant='on'>
+      <input pInputText name="email" formControlName="email" fluid>
+      <label for="email">Email</label>
+    </p-float-label>
+
+    <p-float-label variant='on'>
+      <input pInputText name="password" formControlName="password" fluid>
+      <label for="password">Password</label>
+    </p-float-label>
+    <p-float-label variant='on'>
+      <input pInputText name="username" formControlName="name" fluid>
+      <label for="username">Username</label>
+    </p-float-label>
+    <p-float-label variant='on'>
+      <input pInputText name="role" formControlName="role" fluid>
+      <label for="role">Role</label>
+    </p-float-label>
+    <p-button fluid type="submit" label="Login" [disabled]="signupFormGroup.invalid" />
+  </form>
+</div>

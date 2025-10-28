@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -18,12 +19,14 @@ export const routes: Routes = [
     path: 'login',
     loadComponent: () =>
       import('./login/login.component')
-        .then(mod => mod.LoginComponent)
+        .then(mod => mod.LoginComponent),
+    canActivate: [authGuard]
   },
   {
     path: 'dashboard',
     loadChildren: () =>
       import('./dashboard/dashboard.routes')
-        .then(mod => mod.dashboardRoutes)
+        .then(mod => mod.dashboardRoutes),
+    canActivate: [authGuard]
   }
 ];
