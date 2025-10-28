@@ -14,5 +14,5 @@
         <label for="role">Role</label>
     </p-float-label>
 
-    <p-button label="Add User" icon="pi pi-plus" type="submit" [disabled]="addUserFormGroup.invalid"></p-button>
+    <p-button label="Add User" icon="pi pi-plus" type="submit" [disabled]="addUserFormGroup.invalid" (onClick)="addUser()"></p-button>
 </form>

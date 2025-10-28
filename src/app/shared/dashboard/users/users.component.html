@@ -1,4 +1,4 @@
-
+<p-toast></p-toast>
 <p-confirm-dialog />
 <div class="user-table-container">
     <p-table [value]="users" stripedRows>
@@ -15,7 +15,7 @@
                             <ng-template #header>
                                 <h2>Add User</h2>
                             </ng-template>
-                            <app-add></app-add>
+                            <app-add (userAdded)="onUserAdded($event)"></app-add>
                         </p-dialog>
                     }
                 </div>
@@ -45,13 +45,7 @@
                 <td>{{ user.name | titlecase}}</td>
                 <td>{{ user.role }}</td>
                 <td class="actions-column">
-                    <p-button pButton type="button" icon="pi pi-pencil" (onClick)="editVisible=true" [disabled]="user.role=='Admin'"></p-button>
-                    <p-dialog [(visible)]="editVisible">
-                        <ng-template #header>
-                            <h2>Edit User</h2>
-                        </ng-template>
-                        <app-edit [user]="user"></app-edit>
-                    </p-dialog>
+                    <p-button pButton type="button" icon="pi pi-pencil" (onClick)="openEditDialog(user)" [disabled]="user.role=='Admin'"></p-button>
                     @if(isAdmin){
                         <p-button pButton type="button" icon="pi pi-trash" severity="danger" (onClick)="deleteUser(user.email)" [disabled]="user.role=='Admin'"></p-button>
                     }
@@ -60,4 +54,13 @@
     
         </ng-template>
     </p-table>
+
+    @if(selectedUser) {
+        <p-dialog [(visible)]="editVisible" (onHide)="closeEditDialog()">
+            <ng-template #header>
+                <h2>Edit User</h2>
+            </ng-template>
+            <app-edit [user]="selectedUser" (userUpdated)="onUserUpdated()"></app-edit>
+        </p-dialog>
+    }
 </div>

@@ -7,12 +7,13 @@ import { BaseIcon } from "primeng/icons/baseicon";
 import { InputText } from 'primeng/inputtext';
 import { FormsModule, NgModel } from '@angular/forms';
 import { AuthService } from '../../auth.service';
-import { Role } from '../../../models/user';
+import { Role, User } from '../../../models/user';
 import { EditComponent } from './edit/edit.component';
 import { Dialog } from "primeng/dialog";
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { AddComponent } from './add/add.component';
+import { Toast } from "primeng/toast";
 
 @Component({
   selector: 'app-users',
@@ -24,23 +25,52 @@ import { AddComponent } from './add/add.component';
     InputText,
     Dialog,
     ConfirmDialogModule,
-    
     EditComponent,
-    AddComponent
+    AddComponent,
+    Toast
 ],
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss',
-  providers: [ConfirmationService]
+  providers: [ConfirmationService,MessageService]
 })
 export class UsersComponent {
   private userService = inject(UserService)
   private authService = inject(AuthService)
   private confirmationService = inject(ConfirmationService)
+  private messageService = inject(MessageService)
 
   searchText=''
 
   editVisible = false;
   addUserVisible = false;
+  selectedUser: User | null = null;
+
+  openEditDialog(user: User) {
+    this.selectedUser = user;
+    this.editVisible = true;
+  }
+
+  closeEditDialog() {
+    this.editVisible = false;
+    this.selectedUser = null;
+  }
+
+  onUserUpdated() {
+    this.closeEditDialog();
+  }
+
+  onUserAdded(user: User) {
+    try {
+      this.userService.addUser(user);
+      this.addUserVisible = false;
+    } catch (error) {
+      this.messageService.add({
+        severity:'error', 
+        summary: 'Error', 
+        detail: 'Failed to add user: ' + (error as Error).message
+      });
+    }
+  }
 
   deleteUser(userEmail: string) {
     this.confirmationService.confirm({

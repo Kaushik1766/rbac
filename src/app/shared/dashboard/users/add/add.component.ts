@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { FloatLabel } from 'primeng/floatlabel';
 import { InputText } from 'primeng/inputtext';
 import { Select } from 'primeng/select';
-import { Role } from '../../../../models/user';
+import { Role, User } from '../../../../models/user';
 
 @Component({
   selector: 'app-add',
@@ -20,6 +20,9 @@ import { Role } from '../../../../models/user';
   styleUrl: './add.component.scss'
 })
 export class AddComponent {
+
+  @Output() userAdded = new EventEmitter<User>();
+
   roles = [
     { label: 'Admin', value: Role.Admin },
     { label: 'Manager', value: Role.Manager },
@@ -40,11 +43,24 @@ export class AddComponent {
       ],
       updateOn: 'change'
     }),
-    role: new FormControl('',{
+    role: new FormControl<Role>(Role.User,{
       validators: [
         Validators.required
       ],
       updateOn: 'change'
     })
   })
+
+  addUser() {
+    if (this.addUserFormGroup.valid) {
+      const user: User = {
+        name: this.addUserFormGroup.value.name!,
+        email: this.addUserFormGroup.value.email!,
+        role: this.addUserFormGroup.value.role!,
+        password: '123'
+      };
+      this.userAdded.emit(user);
+      this.addUserFormGroup.reset({ role: Role.User });
+    }
+  }
 }

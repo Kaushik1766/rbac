@@ -6,36 +6,14 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { Title } from "@angular/platform-browser";
-import { formatDate } from "@angular/common";
 import { FloatLabel } from "primeng/floatlabel";
 import { ButtonModule } from "primeng/button";
-import { InputText, InputTextModule } from "primeng/inputtext";
+import { InputTextModule } from "primeng/inputtext";
 import { TextareaModule } from "primeng/textarea";
 import { inject } from "@angular/core";
 import { AuthService } from "../../auth.service";
 import { Role } from "../../../models/user";
-
-const announcements = [
-  {
-    title: "System Maintenance",
-    content:
-      "The system will be down for maintenance on Saturday from 1 AM to 3 AM.",
-    date: new Date("2024-06-10T01:00:00"),
-  },
-  {
-    title: "New Feature Released",
-    content:
-      "We have released a new feature that allows users to customize their dashboards.",
-    date: new Date("2024-06-08T09:30:00"),
-  },
-  {
-    title: "Holiday Schedule",
-    content:
-      "Please note the office will be closed on July 4th in observance of Independence Day.",
-    date: new Date("2024-06-15T00:00:00"),
-  },
-];
+import { AnnouncementService } from "../../announcement.service";
 
 @Component({
   selector: "app-announcements",
@@ -53,8 +31,9 @@ const announcements = [
 })
 export class AnnouncementsComponent {
   private authService = inject(AuthService);
+  private announcementService = inject(AnnouncementService);
 
-  announcements = announcements;
+  
 
   announcementFormGroup = new FormGroup({
     title: new FormControl("", {
@@ -67,9 +46,24 @@ export class AnnouncementsComponent {
     }),
   });
 
-  addAnnouncement() {}
+  addAnnouncement() {
+    if (this.announcementFormGroup.valid) {
+      this.announcementService.addAnnouncement({
+        title: this.announcementFormGroup.value.title!,
+        content: this.announcementFormGroup.value.content!,
+        date: new Date()
+      });
+      this.announcementFormGroup.reset();
+    }
+  }
 
   get isAdmin(){
     return this.authService.currentUser()!.role == Role.Admin;
+  }
+
+  get announcements() {
+    return this.announcementService.announcements().sort((a, b) =>
+    b.date.getTime() - a.date.getTime()
+  );
   }
 }

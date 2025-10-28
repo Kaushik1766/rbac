@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, OnChanges, SimpleChanges, input, OnInit } from '@angular/core';
+import { Component, effect, inject, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
@@ -6,6 +6,8 @@ import { FloatLabel } from 'primeng/floatlabel';
 import { Role, User } from '../../../../models/user';
 import { InputText } from 'primeng/inputtext';
 import { Select } from 'primeng/select';
+import { UserService } from '../../../user.service';
+import { input } from '@angular/core';
 
 @Component({
   selector: 'app-edit',
@@ -21,9 +23,11 @@ import { Select } from 'primeng/select';
   templateUrl: './edit.component.html',
   styleUrl: './edit.component.scss'
 })
-export class EditComponent implements OnInit {
+export class EditComponent {
+  private userService = inject(UserService)
   
   user = input.required<User>();
+  @Output() userUpdated = new EventEmitter<void>();
 
   roles = [
     { label: 'Admin', value: Role.Admin },
@@ -37,12 +41,23 @@ export class EditComponent implements OnInit {
     role: new FormControl()
   })
 
-  ngOnInit(): void {
-    this.editFormGroup.patchValue({
-      name: this.user().name,
-      email: this.user().email,
-      role: this.user().role
+  constructor() {
+    effect(() => {
+      const currentUser = this.user();
+      this.editFormGroup.patchValue({
+        name: currentUser.name,
+        email: currentUser.email,
+        role: currentUser.role
+      });
     });
   }
-  saveChanges() {}
+
+  saveChanges() {
+    this.userService.editUser({
+      ...this.user(),
+      name: this.editFormGroup.value.name!,
+      role: this.editFormGroup.value.role!
+    })
+    this.userUpdated.emit();
+  }
 }

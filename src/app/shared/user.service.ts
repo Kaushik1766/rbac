@@ -24,12 +24,20 @@ export class UserService {
   }
 
   addUser(user: User) {
+    if(this.users.find(u => u.email == user.email)) {
+      throw new Error('User with this email already exists');
+    }
     this.users.push(user);
     this.saveUsers()
   }
 
   removeUserByEmail(email: string) {
     this.users = this.users.filter(u => u.email != email)
+    this.saveUsers()
+  }
+
+  editUser(updatedUser: User) {
+    this.users = this.users.map(u=>u.email==updatedUser.email?updatedUser:u)
     this.saveUsers()
   }
 }
