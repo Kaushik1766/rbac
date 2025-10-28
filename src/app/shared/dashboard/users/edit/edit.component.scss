@@ -1,0 +1,29 @@
+:host {
+  display: block;
+}
+
+.edit-form {
+  padding: 1rem 0;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    min-width: 400px;
+
+    p-float-label {
+      width: 100%;
+
+      input,
+      p-select {
+        width: 100%;
+        border-radius: var(--p-border-radius-lg);
+      }
+    }
+
+    p-button {
+      align-self: flex-start;
+      margin-top: 0.5rem;
+    }
+  }
+}

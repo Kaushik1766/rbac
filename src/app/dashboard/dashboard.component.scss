@@ -1,0 +1,53 @@
+header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  padding: 1.5rem 2rem;
+  justify-content: space-between;
+  background-color: var(--p-content-background);
+  border-bottom: 1px solid var(--p-content-border-color);
+  gap: 2rem;
+
+  h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--p-text-color);
+    white-space: nowrap;
+  }
+
+  .menu {
+    display: flex;
+    gap: 1rem;
+    flex: 1;
+    align-items: center;
+  }
+
+  .logout {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    white-space: nowrap;
+
+    .email {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: var(--p-border-radius-md);
+      background-color: var(--p-surface-50);
+
+      span {
+        color: var(--p-primary-color);
+        font-size: 1.125rem;
+      }
+
+      p {
+        margin: 0;
+        font-size: 0.875rem;
+        color: var(--p-text-color);
+      }
+    }
+  }
+}

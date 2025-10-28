@@ -1,0 +1,18 @@
+<form [formGroup]="addUserFormGroup">
+    <p-float-label variant="on">
+        <input pInputText formControlName="name" id="name" fluid />
+        <label for="name">Name</label>
+    </p-float-label>
+
+    <p-float-label variant="on">
+        <input pInputText formControlName="email" id="email" fluid />
+        <label for="email">Email</label>
+    </p-float-label>
+
+    <p-float-label variant="on">
+        <p-select formControlName="role" id="role" [options]="roles" fluid appendTo="body" />
+        <label for="role">Role</label>
+    </p-float-label>
+
+    <p-button label="Add User" icon="pi pi-plus" type="submit" [disabled]="addUserFormGroup.invalid"></p-button>
+</form>

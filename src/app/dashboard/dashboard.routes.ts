@@ -6,14 +6,23 @@ import { AdminComponent } from "./admin/admin.component";
 export const dashboardRoutes: Routes = [
   {
     path: 'user',
-    component: UserComponent
+    loadComponent: () => import('./user/user.component')
+      .then(m => m.UserComponent),
+    loadChildren: () => import('./user/user.routes')
+      .then(m => m.userRoutes)
   },
   {
     path: 'manager',
-    component: ManagerComponent
+    loadComponent: () => import('./manager/manager.component')
+      .then(m => m.ManagerComponent),
+    loadChildren: () => import('./manager/manager.routes')
+      .then(m => m.managerRoutes)
   },
   {
     path: 'admin',
-    component: AdminComponent
+    loadComponent: () => import('./admin/admin.component')
+      .then(m => m.AdminComponent),
+    loadChildren: () => import('./admin/admin.routes')
+      .then(m => m.adminRoutes)
   },
 ]

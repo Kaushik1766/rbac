@@ -1,0 +1,37 @@
+:host {
+  display: block;
+}
+
+div {
+  padding: 1.5rem;
+  border: 1px solid var(--p-content-border-color);
+  border-radius: var(--p-border-radius-lg);
+  background-color: var(--p-surface-50);
+  transition: box-shadow 0.2s;
+
+  &:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  h2 {
+    margin: 0 0 0.75rem 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--p-text-color);
+  }
+
+  p {
+    margin: 0 0 1rem 0;
+    font-size: 0.938rem;
+    line-height: 1.5;
+    color: var(--p-text-muted-color);
+  }
+
+  span {
+    font-size: 0.813rem;
+    color: var(--p-text-muted-color);
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+}

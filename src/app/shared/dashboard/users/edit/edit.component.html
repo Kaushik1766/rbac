@@ -1,0 +1,20 @@
+<div class="edit-form">
+    <form [formGroup]="editFormGroup" (ngSubmit)="saveChanges()">
+        <p-float-label variant="on">
+            <input pInputText formControlName="name" id="name" fluid />
+            <label for="name">Name</label>
+        </p-float-label>
+
+        <p-float-label variant="on">
+            <input pInputText formControlName="email" id="email" fluid />
+            <label for="email">Email</label>
+        </p-float-label>
+
+        <p-float-label variant="on">
+            <p-select formControlName="role" id="role" [options]="roles" fluid appendTo="body" />
+            <label for="role">Role</label>
+        </p-float-label>
+
+        <p-button label="Save Changes" icon="pi pi-check" type="submit" [disabled]="editFormGroup.invalid"></p-button>
+    </form>
+</div>

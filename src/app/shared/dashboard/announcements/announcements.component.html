@@ -1,0 +1,24 @@
+
+@if(isAdmin){
+    <div class="announcement-form">
+        <h1>Add Announcement</h1>
+        <form (ngSubmit)="addAnnouncement()" [formGroup]="announcementFormGroup">
+            <p-float-label variant="on">
+                <input pInputText formControlName="title" id="title" fluid />
+                <label for="title">Title</label>
+            </p-float-label>
+    
+            <p-float-label variant="on">
+                <textarea pTextarea formControlName="content" id="content" fluid ></textarea>
+                <label for="content">Content</label>
+            </p-float-label>
+            <p-button label="Add Announcement" icon="pi pi-plus" type="submit" [disabled]="announcementFormGroup.invalid"></p-button>
+        </form>
+    </div>
+}
+
+<div class="announcements-container">
+    @for (announcement of announcements; track $index) {
+        <app-card [data]="announcement"></app-card>
+    }
+</div>

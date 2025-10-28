@@ -1,0 +1,34 @@
+:host {
+  display: block;
+  padding: 2rem;
+}
+
+.announcement-form {
+  max-width: 80%;
+  margin: 0 auto 2rem;
+  padding: 2rem;
+  background-color: var(--p-content-background);
+  border: 1px solid var(--p-content-border-color);
+  border-radius: var(--p-border-radius-lg);
+
+  h1 {
+    margin: 0 0 1.5rem 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--p-text-color);
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+.announcements-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  gap: 1rem;
+  max-width: 80%;
+}

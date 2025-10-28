@@ -2,14 +2,17 @@ import { inject, Injectable, signal } from '@angular/core';
 import { User } from '../models/user';
 import { Observable } from 'rxjs';
 import { UserService } from './user.service';
+import { MockUsers } from '../mock-data/mock-users';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private user = signal<User | null>(null)
+  private user = signal<User | null>(MockUsers[1]);
   private userService = inject(UserService)
+  private router = inject(Router)
 
   constructor() { }
 
@@ -40,6 +43,11 @@ export class AuthService {
       this.userService.addUser(signupReq)
       observer.complete()
     })
+  }
+
+  logout() {
+    this.user.set(null)
+    this.router.navigate(['/login'])
   }
 
   get currentUser() {

@@ -1,0 +1,63 @@
+
+<p-confirm-dialog />
+<div class="user-table-container">
+    <p-table [value]="users" stripedRows>
+        <ng-template #caption>
+            <div class="search">
+                <h2>Users</h2>
+                <div>
+                    <p-button [outlined]="true" icon="pi pi-filter-slash" label="Clear" (onClick)="searchText=''"/>
+                    <input pInputText type="text" placeholder="Search users by email..." [(ngModel)]="searchText" />
+
+                    @if(isAdmin){
+                        <p-button icon="pi pi-plus" (onClick)="addUserVisible=true"></p-button>
+                        <p-dialog [(visible)]="addUserVisible">
+                            <ng-template #header>
+                                <h2>Add User</h2>
+                            </ng-template>
+                            <app-add></app-add>
+                        </p-dialog>
+                    }
+                </div>
+            </div>
+
+        </ng-template>
+        <ng-template #header>
+            <tr>
+                <th pSortableColumn="email">
+                    Email
+                    <p-sortIcon field="email" />
+                </th>
+                <th pSortableColumn="name">
+                    Name
+                    <p-sortIcon field="name" />
+                </th>
+                <th pSortableColumn="role">
+                    Role
+                    <p-sortIcon field="role" />
+                </th>
+                <th>Actions</th>
+            </tr>
+        </ng-template>
+        <ng-template #body let-user>
+            <tr>
+                <td>{{ user.email }}</td>
+                <td>{{ user.name | titlecase}}</td>
+                <td>{{ user.role }}</td>
+                <td class="actions-column">
+                    <p-button pButton type="button" icon="pi pi-pencil" (onClick)="editVisible=true" [disabled]="user.role=='Admin'"></p-button>
+                    <p-dialog [(visible)]="editVisible">
+                        <ng-template #header>
+                            <h2>Edit User</h2>
+                        </ng-template>
+                        <app-edit [user]="user"></app-edit>
+                    </p-dialog>
+                    @if(isAdmin){
+                        <p-button pButton type="button" icon="pi pi-trash" severity="danger" (onClick)="deleteUser(user.email)" [disabled]="user.role=='Admin'"></p-button>
+                    }
+                </td>
+            </tr>
+    
+        </ng-template>
+    </p-table>
+</div>
