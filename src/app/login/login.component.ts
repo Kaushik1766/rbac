@@ -7,6 +7,7 @@ import { AuthService } from '../shared/auth.service';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
 import { ToastModule } from 'primeng/toast';
+import { LOGIN_STRINGS } from '../../constants/login';
 
 @Component({
   selector: 'app-login',
@@ -27,6 +28,8 @@ export class LoginComponent {
   private messageService = inject(MessageService)
   private destroyRef = inject(DestroyRef)
   private router = inject(Router)
+
+  strings = LOGIN_STRINGS;
 
   loginFormGroup = new FormGroup({
     email: new FormControl('', {

@@ -1,5 +1,5 @@
 <header>
-  <h1>Info Bulletin</h1>
+  <h1>{{ strings.INFO_BULLETIN }}</h1>
   <div class="menu">
     @for(route of availableRoutes; track route.link){
       <p-button [label]="route.title" [routerLink]="route.link" 
@@ -11,7 +11,7 @@
       <span class="pi pi-user"></span>
       <p>{{currentUser()!.email}}</p>
     </div>
-    <p-button label="Logout" icon="pi pi-sign-out" variant="outlined" severity='danger' (onClick)="logout()"></p-button>
+    <p-button label="{{ strings.LOGOUT }}" icon="pi pi-sign-out" variant="outlined" severity='danger' (onClick)="logout()"></p-button>
   </div>
 </header>
 <router-outlet />

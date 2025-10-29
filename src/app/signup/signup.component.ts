@@ -4,6 +4,7 @@ import { Role } from '../models/user';
 import { FloatLabel } from 'primeng/floatlabel';
 import { InputText } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
+import { SIGNUP_STRINGS } from '../../constants/signup';
 
 @Component({
   selector: 'app-signup',
@@ -18,6 +19,8 @@ import { ButtonModule } from 'primeng/button';
   styleUrl: './signup.component.scss'
 })
 export class SignupComponent {
+  strings = SIGNUP_STRINGS;
+
   signupFormGroup = new FormGroup({
     name: new FormControl('', {
       validators: [

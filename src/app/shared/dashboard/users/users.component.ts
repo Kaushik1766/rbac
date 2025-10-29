@@ -13,6 +13,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { AddComponent } from './add/add.component';
 import { Toast } from "primeng/toast";
+import { USERS_STRINGS } from '../../../../constants/users';
 
 @Component({
   selector: 'app-users',
@@ -37,6 +38,8 @@ export class UsersComponent {
   private authService = inject(AuthService)
   private confirmationService = inject(ConfirmationService)
   private messageService = inject(MessageService)
+
+  strings = USERS_STRINGS;
 
   searchText = ''
 

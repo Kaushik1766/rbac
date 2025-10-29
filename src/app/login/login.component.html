@@ -1,17 +1,17 @@
 <p-toast />
 <div class="form-container">
-  <h1>Login</h1>
-  <p>Welcome back, please login to your account</p>
+  <h1>{{ strings.LOGIN }}</h1>
+  <p>{{ strings.WELCOME_BACK }}</p>
   <form [formGroup]="loginFormGroup" (ngSubmit)="login()">
     <p-float-label variant='on'>
       <input pInputText name="email" formControlName="email" fluid>
-      <label for="email">Email</label>
+      <label for="email">{{ strings.EMAIL }}</label>
     </p-float-label>
 
     <p-float-label variant='on'>
       <input pInputText name="password" formControlName="password" fluid>
-      <label for="password">Password</label>
+      <label for="password">{{ strings.PASSWORD }}</label>
     </p-float-label>
-    <p-button fluid type="submit" label="Login" [disabled]="loginFormGroup.invalid" />
+    <p-button fluid type="submit" label="{{ strings.LOGIN_BUTTON }}" [disabled]="loginFormGroup.invalid" />
   </form>
 </div>

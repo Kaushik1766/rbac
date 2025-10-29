@@ -5,6 +5,7 @@ import { FloatLabel } from 'primeng/floatlabel';
 import { InputText } from 'primeng/inputtext';
 import { Select } from 'primeng/select';
 import { Role, User } from '../../../../models/user';
+import { ADD_USER_STRINGS } from '../../../../../constants/add';
 
 @Component({
   selector: 'app-add',
@@ -22,6 +23,8 @@ import { Role, User } from '../../../../models/user';
 export class AddComponent {
 
   @Output() userAdded = new EventEmitter<User>();
+
+  strings = ADD_USER_STRINGS;
 
   roles = [
     { label: 'Admin', value: Role.Admin },

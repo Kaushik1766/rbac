@@ -4,16 +4,16 @@
     <p-table [value]="users" stripedRows>
         <ng-template #caption>
             <div class="search">
-                <h2>Users</h2>
+                <h2>{{ strings.USERS }}</h2>
                 <div>
-                    <p-button [outlined]="true" icon="pi pi-filter-slash" label="Clear" (onClick)="searchText=''"/>
-                    <input pInputText type="text" placeholder="Search users by email..." [(ngModel)]="searchText" />
+                    <p-button [outlined]="true" icon="pi pi-filter-slash" label="{{ strings.CLEAR }}" (onClick)="searchText=''"/>
+                    <input pInputText type="text" placeholder="{{ strings.SEARCH_PLACEHOLDER }}" [(ngModel)]="searchText" />
 
                     @if(isAdmin){
                         <p-button icon="pi pi-plus" (onClick)="addUserVisible=true"></p-button>
                         <p-dialog [(visible)]="addUserVisible">
                             <ng-template #header>
-                                <h2>Add User</h2>
+                                <h2>{{ strings.ADD_USER }}</h2>
                             </ng-template>
                             <app-add (userAdded)="onUserAdded($event)"></app-add>
                         </p-dialog>
@@ -25,18 +25,18 @@
         <ng-template #header>
             <tr>
                 <th pSortableColumn="email">
-                    Email
+                    {{ strings.EMAIL }}
                     <p-sortIcon field="email" />
                 </th>
                 <th pSortableColumn="name">
-                    Name
+                    {{ strings.NAME }}
                     <p-sortIcon field="name" />
                 </th>
                 <th pSortableColumn="role">
-                    Role
+                    {{ strings.ROLE }}
                     <p-sortIcon field="role" />
                 </th>
-                <th>Actions</th>
+                <th>{{ strings.ACTIONS }}</th>
             </tr>
         </ng-template>
         <ng-template #body let-user>
@@ -58,7 +58,7 @@
     @if(selectedUser) {
         <p-dialog [(visible)]="editVisible" (onHide)="closeEditDialog()">
             <ng-template #header>
-                <h2>Edit User</h2>
+                <h2>{{ strings.EDIT_USER }}</h2>
             </ng-template>
             <app-edit [user]="selectedUser" (userUpdated)="onUserUpdated()"></app-edit>
         </p-dialog>

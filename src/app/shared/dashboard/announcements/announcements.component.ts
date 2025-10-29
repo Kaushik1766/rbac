@@ -14,6 +14,7 @@ import { inject } from "@angular/core";
 import { AuthService } from "../../auth.service";
 import { Role } from "../../../models/user";
 import { AnnouncementService } from "../../announcement.service";
+import { ANNOUNCEMENTS_STRINGS } from "../../../../constants/announcements";
 
 @Component({
   selector: "app-announcements",
@@ -33,7 +34,7 @@ export class AnnouncementsComponent {
   private authService = inject(AuthService);
   private announcementService = inject(AnnouncementService);
 
-  
+  strings = ANNOUNCEMENTS_STRINGS;
 
   announcementFormGroup = new FormGroup({
     title: new FormControl("", {
@@ -51,19 +52,19 @@ export class AnnouncementsComponent {
       this.announcementService.addAnnouncement({
         title: this.announcementFormGroup.value.title!,
         content: this.announcementFormGroup.value.content!,
-        date: new Date()
+        date: new Date(),
       });
       this.announcementFormGroup.reset();
     }
   }
 
-  get isAdmin(){
+  get isAdmin() {
     return this.authService.currentUser()!.role == Role.Admin;
   }
 
   get announcements() {
-    return this.announcementService.announcements().sort((a, b) =>
-    b.date.getTime() - a.date.getTime()
-  );
+    return this.announcementService
+      .announcements()
+      .sort((a, b) => b.date.getTime() - a.date.getTime());
   }
 }

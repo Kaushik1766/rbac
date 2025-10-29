@@ -9,6 +9,7 @@ import { Select } from 'primeng/select';
 import { UserService } from '../../../user.service';
 import { input } from '@angular/core';
 import { AuthService } from '../../../auth.service';
+import { EDIT_USER_STRINGS } from '../../../../../constants/edit';
 
 @Component({
   selector: 'app-edit',
@@ -30,6 +31,8 @@ export class EditComponent {
 
   user = input.required<User>();
   @Output() userUpdated = new EventEmitter<void>();
+
+  strings = EDIT_USER_STRINGS;
 
   roleMap = {
     [Role.Admin]: [

@@ -6,6 +6,7 @@ import { Role } from '../models/user';
 import { managerRoutes } from './manager/manager.routes';
 import { adminRoutes } from './admin/admin.routes';
 import { userRoutes } from './user/user.routes';
+import { DASHBOARD_STRINGS } from '../../constants/dashboard';
 
 // const availableRoutes = {
 //   [Role.User]: [
@@ -60,6 +61,8 @@ export class DashboardComponent implements OnInit {
   currentUser = this.authService.currentUser
 
   availableRoutes: AvailableRoute[] = [];
+
+  strings = DASHBOARD_STRINGS;
 
   ngOnInit(): void {
     this.availableRoutes = this.getAvailableRoutes();
