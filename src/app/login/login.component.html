@@ -2,16 +2,35 @@
 <div class="form-container">
   <h1>{{ strings.LOGIN }}</h1>
   <p>{{ strings.WELCOME_BACK }}</p>
-  <form [formGroup]="loginFormGroup" (ngSubmit)="login()">
+  <form
+    [formGroup]="loginFormGroup"
+    (ngSubmit)="login()"
+  >
     <p-float-label variant='on'>
-      <input pInputText name="email" formControlName="email" fluid>
+      <input
+        pInputText
+        name="email"
+        formControlName="email"
+        fluid
+      >
       <label for="email">{{ strings.EMAIL }}</label>
     </p-float-label>
 
     <p-float-label variant='on'>
-      <input pInputText type="password" name="password" formControlName="password" fluid>
+      <input
+        pInputText
+        type="password"
+        name="password"
+        formControlName="password"
+        fluid
+      >
       <label for="password">{{ strings.PASSWORD }}</label>
     </p-float-label>
-    <p-button fluid type="submit" label="{{ strings.LOGIN_BUTTON }}" [disabled]="loginFormGroup.invalid" />
+    <p-button
+      fluid
+      type="submit"
+      label="{{ strings.LOGIN_BUTTON }}"
+      [disabled]="loginFormGroup.invalid"
+    />
   </form>
 </div>

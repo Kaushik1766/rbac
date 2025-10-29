@@ -9,6 +9,6 @@ import { ERROR_PAGE_STRINGS } from '../../constants/constants';
 })
 export class ErrorPageComponent {
 
-  strings = ERROR_PAGE_STRINGS;
+  readonly strings = ERROR_PAGE_STRINGS;
 
 }

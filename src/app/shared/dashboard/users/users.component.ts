@@ -20,6 +20,7 @@ import { USERS_STRINGS } from '../../../../constants/constants';
   imports: [
     FormsModule,
     TitleCasePipe,
+
     TableModule,
     Button,
     InputText,
@@ -39,7 +40,9 @@ export class UsersComponent {
   private confirmationService = inject(ConfirmationService);
   private messageService = inject(MessageService);
 
-  strings = USERS_STRINGS;
+  readonly strings = USERS_STRINGS;
+
+  currentUser = this.authService.currentUser;
 
   searchText = '';
 
@@ -68,23 +71,23 @@ export class UsersComponent {
     } catch (error) {
       this.messageService.add({
         severity: 'error',
-        summary: 'Error',
-        detail: 'Failed to add user: ' + (error as Error).message
+        summary: this.strings.ERROR_SUMMARY,
+        detail: this.strings.FAILED_TO_ADD_USER + (error as Error).message
       });
     }
   }
 
   deleteUser(userEmail: string): void {
     this.confirmationService.confirm({
-      header: 'Confirm Deletion',
-      message: `Are you sure you want to delete the user with email: ${userEmail}?`,
+      header: this.strings.CONFIRM_DELETION,
+      message: this.strings.DELETE_USER_CONFIRM_MESSAGE + userEmail + '?',
       acceptButtonProps: {
         severity: 'danger',
-        label: 'Delete',
+        label: this.strings.DELETE_BUTTON,
       },
       rejectButtonProps: {
         severity: 'secondary',
-        label: 'Cancel',
+        label: this.strings.CANCEL_BUTTON,
       },
       accept: () => {
         this.userService.removeUserByEmail(userEmail);
@@ -98,5 +101,15 @@ export class UsersComponent {
 
   get isAdmin(): boolean {
     return this.authService.currentUser()!.role == Role.Admin;
+  }
+
+  get allowedRoles(): Role[] {
+    switch (this.currentUser()!.role) {
+      case Role.Admin:
+        return [Role.Manager, Role.User];
+      case Role.Manager:
+        return [Role.User];
+    }
+    return []
   }
 }

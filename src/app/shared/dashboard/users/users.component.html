@@ -69,7 +69,7 @@
             pButton
             type="button"
             icon="pi pi-pencil"
-            [disabled]="user.role=='Admin'"
+            [disabled]="!allowedRoles.includes(user.role)"
             (onClick)="openEditDialog(user)"
           />
           @if(isAdmin){
@@ -90,8 +90,8 @@
 
   @if(selectedUser) {
   <p-dialog
-    [(visible)]="editVisible"
     (onHide)="closeEditDialog()"
+    [(visible)]="editVisible"
   >
     <ng-template #header>
       <h2>{{ strings.EDIT_USER }}</h2>

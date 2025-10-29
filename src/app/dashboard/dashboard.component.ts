@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { RouterOutlet, RouterLinkWithHref, Router, Route, Routes, RouterLink } from '@angular/router';
+import { RouterOutlet, Router, Routes, RouterLink } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { Button } from 'primeng/button';
 import { Role } from '../models/user';
@@ -17,8 +17,8 @@ type AvailableRoute = {
   selector: 'app-dashboard',
   imports: [
     RouterLink,
-
     RouterOutlet,
+
     Button,
   ],
   templateUrl: './dashboard.component.html',
@@ -29,11 +29,11 @@ export class DashboardComponent implements OnInit {
   private authService = inject(AuthService);
   private router = inject(Router);
 
-  currentUser = this.authService.currentUser
+  currentUser = this.authService.currentUser;
 
   availableRoutes: AvailableRoute[] = [];
 
-  strings = DASHBOARD_STRINGS;
+  readonly strings = DASHBOARD_STRINGS;
 
   ngOnInit(): void {
     this.availableRoutes = this.getAvailableRoutes();
@@ -60,7 +60,6 @@ export class DashboardComponent implements OnInit {
         return managerAvailableRoutes;
       case Role.User:
         return this.routesToAvailableRoutes(userRoutes, 'user');
-
     }
   }
 

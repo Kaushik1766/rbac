@@ -52,12 +52,12 @@ export class LoginComponent {
       .login(this.loginFormGroup.value.email!, this.loginFormGroup.value.password!)
       .subscribe({
         next: () => {
-          console.log('logged in successfully')
+          // console.log('logged in successfully')
           this.router.navigate(['dashboard', 'user'])
         },
         error: err => {
           this.messageService.add({
-            summary: 'Error',
+            summary: this.strings.ERROR_SUMMARY,
             detail: err,
             severity: 'error'
           })

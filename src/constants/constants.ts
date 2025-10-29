@@ -13,7 +13,8 @@ export const LOGIN_STRINGS = {
   WELCOME_BACK: 'Welcome back, please login to your account',
   EMAIL: 'Email',
   PASSWORD: 'Password',
-  LOGIN_BUTTON: 'Login'
+  LOGIN_BUTTON: 'Login',
+  ERROR_SUMMARY: 'Error'
 };
 
 export const SIGNUP_STRINGS = {
@@ -42,7 +43,13 @@ export const USERS_STRINGS = {
   NAME: 'Name',
   ROLE: 'Role',
   ACTIONS: 'Actions',
-  EDIT_USER: 'Edit User'
+  EDIT_USER: 'Edit User',
+  ERROR_SUMMARY: 'Error',
+  FAILED_TO_ADD_USER: 'Failed to add user: ',
+  CONFIRM_DELETION: 'Confirm Deletion',
+  DELETE_USER_CONFIRM_MESSAGE: 'Are you sure you want to delete the user with email: ',
+  DELETE_BUTTON: 'Delete',
+  CANCEL_BUTTON: 'Cancel'
 };
 
 export const ADD_USER_STRINGS = {
