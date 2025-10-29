@@ -9,7 +9,7 @@
     </p-float-label>
 
     <p-float-label variant='on'>
-      <input pInputText name="password" formControlName="password" fluid>
+      <input pInputText type="password" name="password" formControlName="password" fluid>
       <label for="password">{{ strings.PASSWORD }}</label>
     </p-float-label>
     <p-button fluid type="submit" label="{{ strings.LOGIN_BUTTON }}" [disabled]="loginFormGroup.invalid" />

@@ -10,12 +10,14 @@ export const routes: Routes = [
   },
   {
     path: 'signup',
+    title: 'Signup',
     loadComponent: () =>
       import('./signup/signup.component')
         .then(mod => mod.SignupComponent)
   },
   {
     path: 'login',
+    title: 'Login',
     loadComponent: () =>
       import('./login/login.component')
         .then(mod => mod.LoginComponent),
@@ -32,6 +34,7 @@ export const routes: Routes = [
   },
   {
     path: '**',
+    title: 'Not Found',
     loadComponent: () => import('./error-page/error-page.component')
       .then(mod => mod.ErrorPageComponent)
   }
