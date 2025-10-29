@@ -7,7 +7,7 @@ import { AuthService } from '../services/auth.service';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
 import { ToastModule } from 'primeng/toast';
-import { LOGIN_STRINGS } from '../../constants/login';
+import { LOGIN_STRINGS } from '../../constants/constants';
 
 @Component({
   selector: 'app-login',

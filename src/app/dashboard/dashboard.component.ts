@@ -6,7 +6,7 @@ import { Role } from '../models/user';
 import { managerRoutes } from './manager/manager.routes';
 import { adminRoutes } from './admin/admin.routes';
 import { userRoutes } from './user/user.routes';
-import { DASHBOARD_STRINGS } from '../../constants/dashboard';
+import { DASHBOARD_STRINGS } from '../../constants/constants';
 
 type AvailableRoute = {
   title: string;

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ERROR_PAGE_STRINGS } from '../../constants/error-page';
+import { ERROR_PAGE_STRINGS } from '../../constants/constants';
 
 @Component({
   selector: 'app-error-page',

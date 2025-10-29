@@ -13,7 +13,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { AddComponent } from './add/add.component';
 import { Toast } from "primeng/toast";
-import { USERS_STRINGS } from '../../../../constants/users';
+import { USERS_STRINGS } from '../../../../constants/constants';
 
 @Component({
   selector: 'app-users',

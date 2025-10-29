@@ -4,7 +4,7 @@ import { Role } from '../models/user';
 import { FloatLabel } from 'primeng/floatlabel';
 import { InputText } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
-import { SIGNUP_STRINGS } from '../../constants/signup';
+import { SIGNUP_STRINGS } from '../../constants/constants';
 
 @Component({
   selector: 'app-signup',

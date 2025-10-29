@@ -14,7 +14,7 @@ import { inject } from "@angular/core";
 import { AuthService } from "../../../services/auth.service";
 import { Role } from "../../../models/user";
 import { AnnouncementService } from "../../../services/announcement.service";
-import { ANNOUNCEMENTS_STRINGS } from "../../../../constants/announcements";
+import { ANNOUNCEMENTS_STRINGS } from '../../../../constants/constants';
 
 @Component({
   selector: "app-announcements",

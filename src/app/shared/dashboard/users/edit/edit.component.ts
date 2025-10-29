@@ -9,7 +9,7 @@ import { Select } from 'primeng/select';
 import { UserService } from '../../../../services/user.service';
 import { input } from '@angular/core';
 import { AuthService } from '../../../../services/auth.service';
-import { EDIT_USER_STRINGS } from '../../../../../constants/edit';
+import { EDIT_USER_STRINGS } from '../../../../../constants/constants';
 
 @Component({
   selector: 'app-edit',
