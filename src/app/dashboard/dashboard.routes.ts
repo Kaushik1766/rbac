@@ -1,7 +1,4 @@
-import { Route, Routes } from "@angular/router";
-import { UserComponent } from "./user/user.component";
-import { ManagerComponent } from "./manager/manager.component";
-import { AdminComponent } from "./admin/admin.component";
+import { Routes } from "@angular/router";
 
 export const dashboardRoutes: Routes = [
   {

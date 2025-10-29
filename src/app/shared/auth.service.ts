@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
-  private user = signal<User | null>(MockUsers[1]);
+  private user = signal<User | null>(MockUsers[0]);
   private userService = inject(UserService)
   private router = inject(Router)
 

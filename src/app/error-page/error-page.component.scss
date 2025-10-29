@@ -1,0 +1,21 @@
+div {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--p-background);
+
+  h1 {
+    font-size: 4rem;
+    line-height: 0;
+    color: var(--p-primary-700)
+  }
+
+  p {
+    font-size: 1.2rem;
+    line-height: 0;
+    color: var(--p-surface);
+  }
+}

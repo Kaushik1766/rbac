@@ -28,10 +28,10 @@ import { Toast } from "primeng/toast";
     EditComponent,
     AddComponent,
     Toast
-],
+  ],
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss',
-  providers: [ConfirmationService,MessageService]
+  providers: [ConfirmationService, MessageService]
 })
 export class UsersComponent {
   private userService = inject(UserService)
@@ -39,7 +39,7 @@ export class UsersComponent {
   private confirmationService = inject(ConfirmationService)
   private messageService = inject(MessageService)
 
-  searchText=''
+  searchText = ''
 
   editVisible = false;
   addUserVisible = false;
@@ -65,8 +65,8 @@ export class UsersComponent {
       this.addUserVisible = false;
     } catch (error) {
       this.messageService.add({
-        severity:'error', 
-        summary: 'Error', 
+        severity: 'error',
+        summary: 'Error',
         detail: 'Failed to add user: ' + (error as Error).message
       });
     }
@@ -76,11 +76,11 @@ export class UsersComponent {
     this.confirmationService.confirm({
       header: 'Confirm Deletion',
       message: `Are you sure you want to delete the user with email: ${userEmail}?`,
-      acceptButtonProps:{
+      acceptButtonProps: {
         severity: 'danger',
         label: 'Delete',
       },
-      rejectButtonProps:{
+      rejectButtonProps: {
         severity: 'secondary',
         label: 'Cancel',
       },
@@ -94,7 +94,7 @@ export class UsersComponent {
     return this.userService.users.filter(u => u.email.includes(this.searchText));
   }
 
-  get isAdmin(){
+  get isAdmin() {
     return this.authService.currentUser()!.role == Role.Admin;
   }
 }

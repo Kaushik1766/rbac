@@ -8,6 +8,7 @@ import { InputText } from 'primeng/inputtext';
 import { Select } from 'primeng/select';
 import { UserService } from '../../../user.service';
 import { input } from '@angular/core';
+import { AuthService } from '../../../auth.service';
 
 @Component({
   selector: 'app-edit',
@@ -25,15 +26,24 @@ import { input } from '@angular/core';
 })
 export class EditComponent {
   private userService = inject(UserService)
-  
+  private authService = inject(AuthService)
+
   user = input.required<User>();
   @Output() userUpdated = new EventEmitter<void>();
 
-  roles = [
-    { label: 'Admin', value: Role.Admin },
-    { label: 'Manager', value: Role.Manager },
-    { label: 'User', value: Role.User }
-  ];
+  roleMap = {
+    [Role.Admin]: [
+      { label: 'Admin', value: Role.Admin },
+      { label: 'Manager', value: Role.Manager },
+      { label: 'User', value: Role.User }
+    ],
+    [Role.Manager]: [
+      { label: 'Manager', value: Role.Manager },
+      { label: 'User', value: Role.User }
+    ],
+    [Role.User]: [],
+  }
+
 
   editFormGroup = new FormGroup({
     name: new FormControl(),
@@ -59,5 +69,9 @@ export class EditComponent {
       role: this.editFormGroup.value.role!
     })
     this.userUpdated.emit();
+  }
+
+  get roles() {
+    return this.roleMap[this.authService.currentUser()!.role]
   }
 }
