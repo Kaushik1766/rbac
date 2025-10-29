@@ -14,6 +14,7 @@ import { inject } from "@angular/core";
 import { AuthService } from "../../../services/auth.service";
 import { Role } from "../../../models/user";
 import { AnnouncementService } from "../../../services/announcement.service";
+import { Announcement } from "../../../models/announcement";
 import { ANNOUNCEMENTS_STRINGS } from '../../../../constants/constants';
 
 @Component({
@@ -47,7 +48,7 @@ export class AnnouncementsComponent {
     }),
   });
 
-  addAnnouncement() {
+  addAnnouncement(): void {
     if (this.announcementFormGroup.valid) {
       this.announcementService.addAnnouncement({
         title: this.announcementFormGroup.value.title!,
@@ -58,11 +59,11 @@ export class AnnouncementsComponent {
     }
   }
 
-  get isAdmin() {
+  get isAdmin(): boolean {
     return this.authService.currentUser()!.role == Role.Admin;
   }
 
-  get announcements() {
+  get announcements(): Announcement[] {
     return this.announcementService
       .announcements()
       .sort((a, b) => b.date.getTime() - a.date.getTime());

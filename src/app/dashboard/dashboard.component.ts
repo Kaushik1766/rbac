@@ -64,12 +64,12 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  get isActiveRoute() {
+  get isActiveRoute(): (routeLink: string) => boolean {
     const currentUrl = this.router.url
     return (routeLink: string) => currentUrl.includes(routeLink)
   }
 
-  logout() {
+  logout(): void {
     this.authService.logout();
   }
 }

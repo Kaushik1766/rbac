@@ -46,7 +46,7 @@ export class LoginComponent {
     }),
   })
 
-  login() {
+  login(): void {
     const sub = this
       .authService
       .login(this.loginFormGroup.value.email!, this.loginFormGroup.value.password!)

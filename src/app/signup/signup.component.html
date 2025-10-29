@@ -1,24 +1,52 @@
 <div class="form-container">
   <h1>{{ strings.SIGNUP }}</h1>
   <p>{{ strings.WELCOME_ONBOARD }}</p>
-  <form [formGroup]="signupFormGroup" (ngSubmit)="signup()">
+  <form
+    [formGroup]="signupFormGroup"
+    (ngSubmit)="signup()"
+  >
     <p-float-label variant='on'>
-      <input pInputText name="email" formControlName="email" fluid>
+      <input
+        pInputText
+        name="email"
+        formControlName="email"
+        fluid
+      >
       <label for="email">{{ strings.EMAIL }}</label>
     </p-float-label>
 
     <p-float-label variant='on'>
-      <input pInputText name="password" formControlName="password" fluid>
+      <input
+        pInputText
+        name="password"
+        formControlName="password"
+        fluid
+      >
       <label for="password">{{ strings.PASSWORD }}</label>
     </p-float-label>
     <p-float-label variant='on'>
-      <input pInputText name="username" formControlName="name" fluid>
+      <input
+        pInputText
+        name="username"
+        formControlName="name"
+        fluid
+      >
       <label for="username">{{ strings.USERNAME }}</label>
     </p-float-label>
     <p-float-label variant='on'>
-      <input pInputText name="role" formControlName="role" fluid>
+      <input
+        pInputText
+        name="role"
+        formControlName="role"
+        fluid
+      >
       <label for="role">{{ strings.ROLE }}</label>
     </p-float-label>
-    <p-button fluid type="submit" label="{{ strings.SIGNUP_BUTTON }}" [disabled]="signupFormGroup.invalid" />
+    <p-button
+      fluid
+      type="submit"
+      label="{{ strings.SIGNUP_BUTTON }}"
+      [disabled]="signupFormGroup.invalid"
+    />
   </form>
 </div>

@@ -73,7 +73,7 @@ export class EditComponent {
     this.userUpdated.emit();
   }
 
-  get roles() {
+  get roles(): { label: string; value: Role }[] {
     return this.roleMap[this.authService.currentUser()!.role]
   }
 }

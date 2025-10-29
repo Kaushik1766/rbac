@@ -40,11 +40,11 @@ export class AnnouncementService {
     }
   }
 
-  private saveAnnouncements() {
+  private saveAnnouncements(): void {
     localStorage.setItem('announcements', JSON.stringify(this.announcements()));
   }
 
-  addAnnouncement(announcement: Announcement) {
+  addAnnouncement(announcement: Announcement): void {
     this.announcements.update(announcements => [...announcements, announcement]);
     this.saveAnnouncements();
   }

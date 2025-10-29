@@ -1,4 +1,4 @@
-import { inject, Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal, Signal } from '@angular/core';
 import { User } from '../models/user';
 import { Observable } from 'rxjs';
 import { UserService } from './user.service';
@@ -16,7 +16,7 @@ export class AuthService {
 
   constructor() { }
 
-  login(email: string, password: string) {
+  login(email: string, password: string): Observable<boolean> {
     return new Observable<boolean>((observer) => {
       const user = this.userService.users.find(u => u.email == email && u.password == password)
 
@@ -31,7 +31,7 @@ export class AuthService {
     })
   }
 
-  signup(signupReq: User) {
+  signup(signupReq: User): Observable<boolean> {
     return new Observable<boolean>((observer) => {
       const user = this.userService.users.find(u => u.email == signupReq.email)
 
@@ -45,12 +45,12 @@ export class AuthService {
     })
   }
 
-  logout() {
+  logout(): void {
     this.user.set(null)
     this.router.navigate(['/login'])
   }
 
-  get currentUser() {
+  get currentUser(): Signal<User | null> {
     return this.user
   }
 }

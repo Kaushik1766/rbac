@@ -51,7 +51,7 @@ export class SignupComponent {
     }),
   })
 
-  signup() {
+  signup(): void {
 
   }
 }

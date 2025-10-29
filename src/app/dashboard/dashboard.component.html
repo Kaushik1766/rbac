@@ -2,8 +2,11 @@
   <h1>{{ strings.INFO_BULLETIN }}</h1>
   <div class="menu">
     @for(route of availableRoutes; track route.link){
-      <p-button [label]="route.title" [routerLink]="route.link" 
-      [variant]="isActiveRoute(route.link[1])?undefined:'outlined'"></p-button>
+    <p-button
+      [label]="route.title"
+      [routerLink]="route.link"
+      [variant]="isActiveRoute(route.link[1])?undefined:'outlined'"
+    ></p-button>
     }
   </div>
   <div class="logout">
@@ -11,7 +14,13 @@
       <span class="pi pi-user"></span>
       <p>{{currentUser()!.email}}</p>
     </div>
-    <p-button label="{{ strings.LOGOUT }}" icon="pi pi-sign-out" variant="outlined" severity='danger' (onClick)="logout()"></p-button>
+    <p-button
+      label="{{ strings.LOGOUT }}"
+      icon="pi pi-sign-out"
+      variant="outlined"
+      severity='danger'
+      (onClick)="logout()"
+    ></p-button>
   </div>
 </header>
 <router-outlet />

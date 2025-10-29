@@ -1,15 +1,34 @@
 <div class="edit-form">
-    <form [formGroup]="editFormGroup" (ngSubmit)="saveChanges()">
-        <p-float-label variant="on">
-            <input pInputText formControlName="name" id="name" fluid />
-            <label for="name">{{ strings.NAME }}</label>
-        </p-float-label>
+  <form
+    [formGroup]="editFormGroup"
+    (ngSubmit)="saveChanges()"
+  >
+    <p-float-label variant="on">
+      <input
+        pInputText
+        formControlName="name"
+        id="name"
+        fluid
+      />
+      <label for="name">{{ strings.NAME }}</label>
+    </p-float-label>
 
-        <p-float-label variant="on">
-            <p-select formControlName="role" id="role" [options]="roles" fluid appendTo="body" />
-            <label for="role">{{ strings.ROLE }}</label>
-        </p-float-label>
+    <p-float-label variant="on">
+      <p-select
+        formControlName="role"
+        id="role"
+        fluid
+        appendTo="body"
+        [options]="roles"
+      />
+      <label for="role">{{ strings.ROLE }}</label>
+    </p-float-label>
 
-        <p-button label="{{ strings.SAVE_CHANGES }}" icon="pi pi-check" type="submit" [disabled]="editFormGroup.invalid"></p-button>
-    </form>
+    <p-button
+      label="{{ strings.SAVE_CHANGES }}"
+      icon="pi pi-check"
+      type="submit"
+      [disabled]="editFormGroup.invalid"
+    ></p-button>
+  </form>
 </div>

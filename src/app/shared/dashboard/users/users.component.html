@@ -11,9 +11,9 @@
         <h2>{{ strings.USERS }}</h2>
         <div>
           <p-button
-            [outlined]="true"
             icon="pi pi-filter-slash"
             label="{{ strings.CLEAR }}"
+            [outlined]="true"
             (onClick)="searchText=''"
           />
           <input
@@ -24,16 +24,16 @@
           />
 
           @if(isAdmin){
-            <p-button
-              icon="pi pi-plus"
-              (onClick)="addUserVisible=true"
-            />
-            <p-dialog [(visible)]="addUserVisible">
-              <ng-template #header>
-                <h2>{{ strings.ADD_USER }}</h2>
-              </ng-template>
-              <app-add (userAdded)="onUserAdded($event)"></app-add>
-            </p-dialog>
+          <p-button
+            icon="pi pi-plus"
+            (onClick)="addUserVisible=true"
+          />
+          <p-dialog [(visible)]="addUserVisible">
+            <ng-template #header>
+              <h2>{{ strings.ADD_USER }}</h2>
+            </ng-template>
+            <app-add (userAdded)="onUserAdded($event)"></app-add>
+          </p-dialog>
           }
         </div>
       </div>
@@ -56,7 +56,10 @@
         <th>{{ strings.ACTIONS }}</th>
       </tr>
     </ng-template>
-    <ng-template #body let-user>
+    <ng-template
+      #body
+      let-user
+    >
       <tr>
         <td>{{ user.email }}</td>
         <td>{{ user.name | titlecase}}</td>
@@ -70,14 +73,14 @@
             (onClick)="openEditDialog(user)"
           />
           @if(isAdmin){
-            <p-button
-              pButton
-              type="button"
-              icon="pi pi-trash"
-              severity="danger"
-              [disabled]="user.role=='Admin'"
-              (onClick)="deleteUser(user.email)"
-            />
+          <p-button
+            pButton
+            type="button"
+            icon="pi pi-trash"
+            severity="danger"
+            [disabled]="user.role=='Admin'"
+            (onClick)="deleteUser(user.email)"
+          />
           }
         </td>
       </tr>
@@ -86,17 +89,17 @@
   </p-table>
 
   @if(selectedUser) {
-    <p-dialog
-      (onHide)="closeEditDialog()"
-      [(visible)]="editVisible"
-    >
-      <ng-template #header>
-        <h2>{{ strings.EDIT_USER }}</h2>
-      </ng-template>
-      <app-edit
-        [user]="selectedUser"
-        (userUpdated)="onUserUpdated()"
-      />
-    </p-dialog>
+  <p-dialog
+    [(visible)]="editVisible"
+    (onHide)="closeEditDialog()"
+  >
+    <ng-template #header>
+      <h2>{{ strings.EDIT_USER }}</h2>
+    </ng-template>
+    <app-edit
+      [user]="selectedUser"
+      (userUpdated)="onUserUpdated()"
+    />
+  </p-dialog>
   }
 </div>

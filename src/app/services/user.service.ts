@@ -19,25 +19,25 @@ export class UserService {
     }
   }
 
-  private saveUsers() {
+  private saveUsers(): void {
     localStorage.setItem('users', JSON.stringify(this.users));
   }
 
-  addUser(user: User) {
-    if(this.users.find(u => u.email == user.email)) {
+  addUser(user: User): void {
+    if (this.users.find(u => u.email == user.email)) {
       throw new Error('User with this email already exists');
     }
     this.users.push(user);
     this.saveUsers()
   }
 
-  removeUserByEmail(email: string) {
+  removeUserByEmail(email: string): void {
     this.users = this.users.filter(u => u.email != email)
     this.saveUsers()
   }
 
-  editUser(updatedUser: User) {
-    this.users = this.users.map(u=>u.email==updatedUser.email?updatedUser:u)
+  editUser(updatedUser: User): void {
+    this.users = this.users.map(u => u.email == updatedUser.email ? updatedUser : u)
     this.saveUsers()
   }
 }

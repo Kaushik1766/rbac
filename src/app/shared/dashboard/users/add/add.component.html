@@ -1,18 +1,40 @@
 <form [formGroup]="addUserFormGroup">
     <p-float-label variant="on">
-        <input pInputText formControlName="name" id="name" fluid />
+        <input
+            pInputText
+            formControlName="name"
+            id="name"
+            fluid
+        />
         <label for="name">{{ strings.NAME }}</label>
     </p-float-label>
 
     <p-float-label variant="on">
-        <input pInputText formControlName="email" id="email" fluid />
+        <input
+            pInputText
+            formControlName="email"
+            id="email"
+            fluid
+        />
         <label for="email">{{ strings.EMAIL }}</label>
     </p-float-label>
 
     <p-float-label variant="on">
-        <p-select formControlName="role" id="role" [options]="roles" fluid appendTo="body" />
+        <p-select
+            formControlName="role"
+            id="role"
+            fluid
+            appendTo="body"
+            [options]="roles"
+        />
         <label for="role">{{ strings.ROLE }}</label>
     </p-float-label>
 
-    <p-button label="{{ strings.ADD_USER_BUTTON }}" icon="pi pi-plus" type="submit" [disabled]="addUserFormGroup.invalid" (onClick)="addUser()"></p-button>
+    <p-button
+        label="{{ strings.ADD_USER_BUTTON }}"
+        icon="pi pi-plus"
+        type="submit"
+        [disabled]="addUserFormGroup.invalid"
+        (onClick)="addUser()"
+    ></p-button>
 </form>

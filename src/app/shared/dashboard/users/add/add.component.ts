@@ -54,7 +54,7 @@ export class AddComponent {
     })
   })
 
-  addUser() {
+  addUser(): void {
     if (this.addUserFormGroup.valid) {
       const user: User = {
         name: this.addUserFormGroup.value.name!,
