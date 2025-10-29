@@ -6,9 +6,9 @@ import { FloatLabel } from 'primeng/floatlabel';
 import { Role, User } from '../../../../models/user';
 import { InputText } from 'primeng/inputtext';
 import { Select } from 'primeng/select';
-import { UserService } from '../../../user.service';
+import { UserService } from '../../../../services/user.service';
 import { input } from '@angular/core';
-import { AuthService } from '../../../auth.service';
+import { AuthService } from '../../../../services/auth.service';
 import { EDIT_USER_STRINGS } from '../../../../../constants/edit';
 
 @Component({

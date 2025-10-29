@@ -11,9 +11,9 @@ import { ButtonModule } from "primeng/button";
 import { InputTextModule } from "primeng/inputtext";
 import { TextareaModule } from "primeng/textarea";
 import { inject } from "@angular/core";
-import { AuthService } from "../../auth.service";
+import { AuthService } from "../../../services/auth.service";
 import { Role } from "../../../models/user";
-import { AnnouncementService } from "../../announcement.service";
+import { AnnouncementService } from "../../../services/announcement.service";
 import { ANNOUNCEMENTS_STRINGS } from "../../../../constants/announcements";
 
 @Component({

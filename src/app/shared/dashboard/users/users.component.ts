@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
-import { UserService } from '../../user.service';
+import { UserService } from '../../../services/user.service';
 import { TableModule } from 'primeng/table';
 import { TitleCasePipe } from '@angular/common';
 import { Button } from "primeng/button";
 import { InputText } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
-import { AuthService } from '../../auth.service';
+import { AuthService } from '../../../services/auth.service';
 import { Role, User } from '../../../models/user';
 import { EditComponent } from './edit/edit.component';
 import { Dialog } from "primeng/dialog";

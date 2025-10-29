@@ -1,41 +1,12 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet, RouterLinkWithHref, Router, Route, Routes, RouterLink } from '@angular/router';
-import { AuthService } from '../shared/auth.service';
+import { AuthService } from '../services/auth.service';
 import { Button } from 'primeng/button';
 import { Role } from '../models/user';
 import { managerRoutes } from './manager/manager.routes';
 import { adminRoutes } from './admin/admin.routes';
 import { userRoutes } from './user/user.routes';
 import { DASHBOARD_STRINGS } from '../../constants/dashboard';
-
-// const availableRoutes = {
-//   [Role.User]: [
-//     {
-//       title: 'Announcements',
-//       link: ['users', 'announcements'],
-//     }
-//   ],
-//   [Role.Manager]: [
-//     {
-//       title: 'Announcements',
-//       link: ['manager', 'announcements'],
-//     },
-//     {
-//       title: 'Users',
-//       link: ['manager', 'users'],
-//     }
-//   ],
-//   [Role.Admin]: [
-//     {
-//       title: 'Announcements',
-//       link: ['admin', 'announcements'],
-//     },
-//     {
-//       title: 'Users',
-//       link: ['admin', 'users'],
-//     }
-//   ]
-// }
 
 type AvailableRoute = {
   title: string;
@@ -46,17 +17,17 @@ type AvailableRoute = {
   selector: 'app-dashboard',
   imports: [
     RouterLink,
-    
+
     RouterOutlet,
     Button,
-],
+  ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent implements OnInit {
-  
-  private authService = inject(AuthService)
-  private router = inject(Router)
+
+  private authService = inject(AuthService);
+  private router = inject(Router);
 
   currentUser = this.authService.currentUser
 
@@ -68,10 +39,10 @@ export class DashboardComponent implements OnInit {
     this.availableRoutes = this.getAvailableRoutes();
   }
 
-  private routesToAvailableRoutes(routes:Routes, roleString: string): AvailableRoute[] {
+  private routesToAvailableRoutes(routes: Routes, roleString: string): AvailableRoute[] {
     return routes
-      .filter(route=>route.path !=='')
-      .map(route=>{
+      .filter(route => route.path !== '')
+      .map(route => {
         return {
           title: route.title as string,
           link: [roleString, route.path!]
@@ -89,7 +60,7 @@ export class DashboardComponent implements OnInit {
         return managerAvailableRoutes;
       case Role.User:
         return this.routesToAvailableRoutes(userRoutes, 'user');
-         
+
     }
   }
 
@@ -100,5 +71,5 @@ export class DashboardComponent implements OnInit {
 
   logout() {
     this.authService.logout();
-   }
+  }
 }

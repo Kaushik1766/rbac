@@ -3,7 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ButtonModule } from 'primeng/button';
 import { FloatLabel } from 'primeng/floatlabel';
 import { InputText } from 'primeng/inputtext';
-import { AuthService } from '../shared/auth.service';
+import { AuthService } from '../services/auth.service';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
 import { ToastModule } from 'primeng/toast';
@@ -24,10 +24,10 @@ import { LOGIN_STRINGS } from '../../constants/login';
   providers: [MessageService]
 })
 export class LoginComponent {
-  private authService = inject(AuthService)
-  private messageService = inject(MessageService)
-  private destroyRef = inject(DestroyRef)
-  private router = inject(Router)
+  private authService = inject(AuthService);
+  private messageService = inject(MessageService);
+  private destroyRef = inject(DestroyRef);
+  private router = inject(Router);
 
   strings = LOGIN_STRINGS;
 
@@ -62,11 +62,11 @@ export class LoginComponent {
             severity: 'error'
           })
         }
-      })
+      });
 
     this.destroyRef.onDestroy(() => {
-      sub.unsubscribe()
-    })
+      sub.unsubscribe();
+    });
   }
 
 }
