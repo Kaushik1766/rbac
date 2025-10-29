@@ -26,13 +26,13 @@ import { EDIT_USER_STRINGS } from '../../../../../constants/edit';
   styleUrl: './edit.component.scss'
 })
 export class EditComponent {
-  private userService = inject(UserService)
-  private authService = inject(AuthService)
+  private userService = inject(UserService);
+  private authService = inject(AuthService);
 
   user = input.required<User>();
   @Output() userUpdated = new EventEmitter<void>();
 
-  strings = EDIT_USER_STRINGS;
+  readonly strings = EDIT_USER_STRINGS;
 
   roleMap = {
     [Role.Admin]: [
@@ -44,15 +44,14 @@ export class EditComponent {
       { label: 'Manager', value: Role.Manager },
       { label: 'User', value: Role.User }
     ],
-    [Role.User]: [],
-  }
-
+    [Role.User]: []
+  };
 
   editFormGroup = new FormGroup({
     name: new FormControl(),
     email: new FormControl(),
     role: new FormControl()
-  })
+  });
 
   constructor() {
     effect(() => {
@@ -65,12 +64,12 @@ export class EditComponent {
     });
   }
 
-  saveChanges() {
+  saveChanges(): void {
     this.userService.editUser({
       ...this.user(),
       name: this.editFormGroup.value.name!,
       role: this.editFormGroup.value.role!
-    })
+    });
     this.userUpdated.emit();
   }
 

@@ -1,0 +1,8 @@
+1. manager cant manage other managers
+2. error messages in forms
+3. zone zoneless
+4. session storage, cookie vs localstorage
+5. owasp, html injetion validation
+6. todo
+7. responsive
+8. navigate

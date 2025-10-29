@@ -34,34 +34,34 @@ import { USERS_STRINGS } from '../../../../constants/users';
   providers: [ConfirmationService, MessageService]
 })
 export class UsersComponent {
-  private userService = inject(UserService)
-  private authService = inject(AuthService)
-  private confirmationService = inject(ConfirmationService)
-  private messageService = inject(MessageService)
+  private userService = inject(UserService);
+  private authService = inject(AuthService);
+  private confirmationService = inject(ConfirmationService);
+  private messageService = inject(MessageService);
 
   strings = USERS_STRINGS;
 
-  searchText = ''
+  searchText = '';
 
   editVisible = false;
   addUserVisible = false;
   selectedUser: User | null = null;
 
-  openEditDialog(user: User) {
+  openEditDialog(user: User): void {
     this.selectedUser = user;
     this.editVisible = true;
   }
 
-  closeEditDialog() {
+  closeEditDialog(): void {
     this.editVisible = false;
     this.selectedUser = null;
   }
 
-  onUserUpdated() {
+  onUserUpdated(): void {
     this.closeEditDialog();
   }
 
-  onUserAdded(user: User) {
+  onUserAdded(user: User): void {
     try {
       this.userService.addUser(user);
       this.addUserVisible = false;
@@ -74,7 +74,7 @@ export class UsersComponent {
     }
   }
 
-  deleteUser(userEmail: string) {
+  deleteUser(userEmail: string): void {
     this.confirmationService.confirm({
       header: 'Confirm Deletion',
       message: `Are you sure you want to delete the user with email: ${userEmail}?`,
@@ -92,11 +92,11 @@ export class UsersComponent {
     });
   }
 
-  get users() {
+  get users(): User[] {
     return this.userService.users.filter(u => u.email.includes(this.searchText));
   }
 
-  get isAdmin() {
+  get isAdmin(): boolean {
     return this.authService.currentUser()!.role == Role.Admin;
   }
 }

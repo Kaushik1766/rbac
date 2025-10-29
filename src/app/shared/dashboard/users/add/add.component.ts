@@ -24,7 +24,7 @@ export class AddComponent {
 
   @Output() userAdded = new EventEmitter<User>();
 
-  strings = ADD_USER_STRINGS;
+  readonly strings = ADD_USER_STRINGS;
 
   roles = [
     { label: 'Admin', value: Role.Admin },
@@ -33,20 +33,20 @@ export class AddComponent {
   ];
 
   addUserFormGroup = new FormGroup({
-    name: new FormControl('',{
+    name: new FormControl('', {
       validators: [
         Validators.required
       ],
       updateOn: 'change'
     }),
-    email: new FormControl('',{
+    email: new FormControl('', {
       validators: [
         Validators.required,
         Validators.email
       ],
       updateOn: 'change'
     }),
-    role: new FormControl<Role>(Role.User,{
+    role: new FormControl<Role>(Role.User, {
       validators: [
         Validators.required
       ],
