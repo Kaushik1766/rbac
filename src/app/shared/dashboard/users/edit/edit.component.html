@@ -3,26 +3,40 @@
     [formGroup]="editFormGroup"
     (ngSubmit)="saveChanges()"
   >
-    <p-float-label variant="on">
-      <input
-        pInputText
-        formControlName="name"
-        id="name"
-        fluid
-      />
-      <label for="name">{{ strings.NAME }}</label>
-    </p-float-label>
+    <div>
+      <p-float-label variant="on">
+        <input
+          pInputText
+          formControlName="name"
+          id="name"
+          fluid
+        />
+        <label for="name">{{ strings.NAME }}</label>
+      </p-float-label>
+      <div class="error-container">
+        @if (editFormGroup.get('name')?.invalid && editFormGroup.get('name')?.touched) {
+          <p class="error-message">{{ strings.NAME_REQUIRED }}</p>
+        }
+      </div>
+    </div>
 
-    <p-float-label variant="on">
-      <p-select
-        formControlName="role"
-        id="role"
-        fluid
-        appendTo="body"
-        [options]="roles"
-      />
-      <label for="role">{{ strings.ROLE }}</label>
-    </p-float-label>
+    <div>
+      <p-float-label variant="on">
+        <p-select
+          formControlName="role"
+          id="role"
+          fluid
+          appendTo="body"
+          [options]="roles"
+        />
+        <label for="role">{{ strings.ROLE }}</label>
+      </p-float-label>
+      <div class="error-container">
+        @if (editFormGroup.get('role')?.invalid && editFormGroup.get('role')?.touched) {
+          <p class="error-message">{{ strings.ROLE_REQUIRED }}</p>
+        }
+      </div>
+    </div>
 
     <p-button
       label="{{ strings.SAVE_CHANGES }}"

@@ -14,7 +14,9 @@ export const LOGIN_STRINGS = {
   EMAIL: 'Email',
   PASSWORD: 'Password',
   LOGIN_BUTTON: 'Login',
-  ERROR_SUMMARY: 'Error'
+  ERROR_SUMMARY: 'Error',
+  INVALID_EMAIL: 'Invalid email',
+  PASSWORD_EMPTY: 'Password shouldn\'t be empty'
 };
 
 export const SIGNUP_STRINGS = {
@@ -31,7 +33,9 @@ export const ANNOUNCEMENTS_STRINGS = {
   ADD_ANNOUNCEMENT: 'Add Announcement',
   TITLE: 'Title',
   CONTENT: 'Content',
-  ADD_ANNOUNCEMENT_BUTTON: 'Add Announcement'
+  ADD_ANNOUNCEMENT_BUTTON: 'Add Announcement',
+  TITLE_REQUIRED: 'Title is required',
+  CONTENT_REQUIRED: 'Content is required'
 };
 
 export const USERS_STRINGS = {
@@ -56,11 +60,17 @@ export const ADD_USER_STRINGS = {
   NAME: 'Name',
   EMAIL: 'Email',
   ROLE: 'Role',
-  ADD_USER_BUTTON: 'Add User'
+  ADD_USER_BUTTON: 'Add User',
+  NAME_REQUIRED: 'Name is required',
+  INVALID_EMAIL: 'Invalid email',
+  EMAIL_REQUIRED: 'Email is required',
+  ROLE_REQUIRED: 'Role is required'
 };
 
 export const EDIT_USER_STRINGS = {
   NAME: 'Name',
   ROLE: 'Role',
-  SAVE_CHANGES: 'Save Changes'
+  SAVE_CHANGES: 'Save Changes',
+  NAME_REQUIRED: 'Name is required',
+  ROLE_REQUIRED: 'Role is required'
 };

@@ -1,6 +1,6 @@
 import { inject, Injectable, signal, Signal } from '@angular/core';
 import { User } from '../models/user';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { UserService } from './user.service';
 import { MockUsers } from '../mock-data/mock-users';
 import { Router } from '@angular/router';
@@ -14,7 +14,12 @@ export class AuthService {
   private userService = inject(UserService)
   private router = inject(Router)
 
-  constructor() { }
+  constructor() { 
+    const storedUser = localStorage.getItem('currentUser');
+    if (storedUser) {
+      this.user.set(JSON.parse(storedUser));
+    }
+  }
 
   login(email: string, password: string): Observable<boolean> {
     return new Observable<boolean>((observer) => {
@@ -26,6 +31,7 @@ export class AuthService {
       }
 
       this.user.set(user)
+      localStorage.setItem('currentUser', JSON.stringify(user));
       observer.next(true)
       observer.complete()
     })
@@ -47,6 +53,7 @@ export class AuthService {
 
   logout(): void {
     this.user.set(null)
+    localStorage.removeItem('currentUser');
     this.router.navigate(['/login'])
   }
 

@@ -6,26 +6,41 @@
     [formGroup]="loginFormGroup"
     (ngSubmit)="login()"
   >
-    <p-float-label variant='on'>
-      <input
-        pInputText
-        name="email"
-        formControlName="email"
-        fluid
-      >
-      <label for="email">{{ strings.EMAIL }}</label>
-    </p-float-label>
+    <div>
+      <p-float-label variant='on'>
+        <input
+          pInputText
+          name="email"
+          formControlName="email"
+          fluid
+        >
+        <label for="email">{{ strings.EMAIL }}</label>
+      </p-float-label>
+      <div class="error-container">
+        @if (loginFormGroup.get('email')?.invalid && loginFormGroup.get('email')?.touched) {
+          <p class="error-message">{{ strings.INVALID_EMAIL }}</p>
+        }
+      </div>
+    </div>
 
-    <p-float-label variant='on'>
-      <input
-        pInputText
-        type="password"
-        name="password"
-        formControlName="password"
-        fluid
-      >
-      <label for="password">{{ strings.PASSWORD }}</label>
-    </p-float-label>
+    <div>
+      <p-float-label variant='on'>
+        <input
+          pInputText
+          type="password"
+          name="password"
+          formControlName="password"
+          fluid
+        >
+        <label for="password">{{ strings.PASSWORD }}</label>
+      </p-float-label>
+      <div class="error-container">
+        @if (loginFormGroup.get('password')?.invalid && loginFormGroup.get('password')?.touched) {
+          <p class="error-message">{{ strings.PASSWORD_EMPTY }}</p>
+        }
+      </div>
+    </div>
+
     <p-button
       fluid
       type="submit"

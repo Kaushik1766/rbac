@@ -5,25 +5,40 @@
         [formGroup]="announcementFormGroup"
         (ngSubmit)="addAnnouncement()"
     >
-        <p-float-label variant="on">
-            <input
-                pInputText
-                formControlName="title"
-                id="title"
-                fluid
-            />
-            <label for="title">{{ strings.TITLE }}</label>
-        </p-float-label>
+        <div>
+            <p-float-label variant="on">
+                <input
+                    pInputText
+                    formControlName="title"
+                    id="title"
+                    fluid
+                />
+                <label for="title">{{ strings.TITLE }}</label>
+            </p-float-label>
+            <div class="error-container">
+                @if (announcementFormGroup.get('title')?.invalid && announcementFormGroup.get('title')?.touched) {
+                    <p class="error-message">{{ strings.TITLE_REQUIRED }}</p>
+                }
+            </div>
+        </div>
 
-        <p-float-label variant="on">
-            <textarea
-                pTextarea
-                formControlName="content"
-                id="content"
-                fluid
-            ></textarea>
-            <label for="content">{{ strings.CONTENT }}</label>
-        </p-float-label>
+        <div>
+            <p-float-label variant="on">
+                <textarea
+                    pTextarea
+                    formControlName="content"
+                    id="content"
+                    fluid
+                ></textarea>
+                <label for="content">{{ strings.CONTENT }}</label>
+            </p-float-label>
+            <div class="error-container">
+                @if (announcementFormGroup.get('content')?.invalid && announcementFormGroup.get('content')?.touched) {
+                    <p class="error-message">{{ strings.CONTENT_REQUIRED }}</p>
+                }
+            </div>
+        </div>
+
         <p-button
             label="{{ strings.ADD_ANNOUNCEMENT_BUTTON }}"
             icon="pi pi-plus"

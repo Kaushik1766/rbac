@@ -5,16 +5,16 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'signup',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
-  {
-    path: 'signup',
-    title: 'Signup',
-    loadComponent: () =>
-      import('./signup/signup.component')
-        .then(mod => mod.SignupComponent)
-  },
+  // {
+  //   path: 'signup',
+  //   title: 'Signup',
+  //   loadComponent: () =>
+  //     import('./signup/signup.component')
+  //       .then(mod => mod.SignupComponent)
+  // },
   {
     path: 'login',
     title: 'Login',

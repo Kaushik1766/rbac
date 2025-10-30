@@ -3,7 +3,7 @@
 <div class="user-table-container">
   <p-table
     stripedRows
-    [value]="users"
+    [value]="filteredUsers"
   >
 
     <ng-template #caption>
@@ -20,7 +20,7 @@
             pInputText
             type="text"
             placeholder="{{ strings.SEARCH_PLACEHOLDER }}"
-            [(ngModel)]="searchText"
+            [formControl]="searchControl"
           />
 
           @if(isAdmin){

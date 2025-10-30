@@ -1,10 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, Signal } from '@angular/core';
 import { UserService } from '../../../services/user.service';
 import { TableModule } from 'primeng/table';
 import { TitleCasePipe } from '@angular/common';
 import { Button } from "primeng/button";
 import { InputText } from 'primeng/inputtext';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
 import { Role, User } from '../../../models/user';
 import { EditComponent } from './edit/edit.component';
@@ -14,11 +14,13 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { AddComponent } from './add/add.component';
 import { Toast } from "primeng/toast";
 import { USERS_STRINGS } from '../../../../constants/constants';
+import { debounceTime, distinctUntilChanged, from, fromEvent, startWith, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-users',
   imports: [
-    FormsModule,
+    // FormsModule,
+    ReactiveFormsModule,
     TitleCasePipe,
 
     TableModule,
@@ -34,21 +36,43 @@ import { USERS_STRINGS } from '../../../../constants/constants';
   styleUrl: './users.component.scss',
   providers: [ConfirmationService, MessageService]
 })
-export class UsersComponent {
+export class UsersComponent implements OnInit {
   private userService = inject(UserService);
   private authService = inject(AuthService);
   private confirmationService = inject(ConfirmationService);
   private messageService = inject(MessageService);
+  private destroyRef = inject(DestroyRef);
 
   readonly strings = USERS_STRINGS;
 
-  currentUser = this.authService.currentUser;
+  currentUser: Signal<User | null> = this.authService.currentUser;
 
-  searchText = '';
+  searchText: string = '';
 
-  editVisible = false;
-  addUserVisible = false;
+  editVisible: boolean = false;
+  addUserVisible: boolean = false;
+
   selectedUser: User | null = null;
+
+  searchControl = new FormControl('');
+
+  filteredUsers: User[] = [];
+
+  ngOnInit(): void {
+    const subscription = this.searchControl.valueChanges.pipe(
+      startWith(''),
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(value => this.userService.getUsersByEmail(value || ''))
+    ).subscribe(value => {
+      console.log(value);
+      this.filteredUsers = value;
+    });
+
+    this.destroyRef.onDestroy(() => {
+      subscription.unsubscribe();
+    });
+  }
 
   openEditDialog(user: User): void {
     this.selectedUser = user;

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user';
 import { MockUsers } from '../mock-data/mock-users';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,10 @@ export class UserService {
 
   private saveUsers(): void {
     localStorage.setItem('users', JSON.stringify(this.users));
+  }
+
+  getUsersByEmail(email: string): Observable<User[]> {
+    return of(this.users.filter(u => u.email.includes(email)));
   }
 
   addUser(user: User): void {

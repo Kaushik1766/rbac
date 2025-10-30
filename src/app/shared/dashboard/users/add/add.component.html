@@ -1,34 +1,62 @@
 <form [formGroup]="addUserFormGroup">
-    <p-float-label variant="on">
-        <input
-            pInputText
-            formControlName="name"
-            id="name"
-            fluid
-        />
-        <label for="name">{{ strings.NAME }}</label>
-    </p-float-label>
+    <div>
+        <p-float-label variant="on">
+            <input
+                pInputText
+                formControlName="name"
+                id="name"
+                fluid
+            />
+            <label for="name">{{ strings.NAME }}</label>
+        </p-float-label>
+        <div class="error-container">
+            @if (addUserFormGroup.get('name')?.invalid && addUserFormGroup.get('name')?.touched) {
+                <p class="error-message">{{ strings.NAME_REQUIRED }}</p>
+            }
+        </div>
+    </div>
 
-    <p-float-label variant="on">
-        <input
-            pInputText
-            formControlName="email"
-            id="email"
-            fluid
-        />
-        <label for="email">{{ strings.EMAIL }}</label>
-    </p-float-label>
+    <div>
+        <p-float-label variant="on">
+            <input
+                pInputText
+                formControlName="email"
+                id="email"
+                fluid
+            />
+            <label for="email">{{ strings.EMAIL }}</label>
+        </p-float-label>
+        <div class="error-container">
+            @if (addUserFormGroup.get('email')?.invalid && addUserFormGroup.get('email')?.touched) {
+                <p class="error-message">
+                    @if (addUserFormGroup.get('email')?.errors?.['required']) {
+                        {{ strings.EMAIL_REQUIRED }}
+                    }
+                    @if (addUserFormGroup.get('email')?.errors?.['email']) {
+                        {{ strings.INVALID_EMAIL }}
+                    }
+                </p>
+            }
+        </div>
+    </div>
 
-    <p-float-label variant="on">
-        <p-select
-            formControlName="role"
-            id="role"
-            fluid
-            appendTo="body"
-            [options]="roles"
-        />
-        <label for="role">{{ strings.ROLE }}</label>
-    </p-float-label>
+    <div>
+        <p-float-label variant="on">
+            <p-select
+                formControlName="role"
+                id="role"
+                fluid
+                appendTo="body"
+                [options]="roles"
+            />
+            <label for="role">{{ strings.ROLE }}</label>
+        </p-float-label>
+        <div class="error-container">
+            @if (addUserFormGroup.get('role')?.invalid && addUserFormGroup.get('role')?.touched) {
+                <p class="error-message">{{ strings.ROLE_REQUIRED }}</p>
+            }
+        </div>
+    </div>
 
     <p-button
         label="{{ strings.ADD_USER_BUTTON }}"
