@@ -15,7 +15,7 @@
       </p-float-label>
       <div class="error-container">
         @if (editFormGroup.get('name')?.invalid && editFormGroup.get('name')?.touched) {
-          <p class="error-message">{{ strings.NAME_REQUIRED }}</p>
+        <p class="error-message">{{ strings.NAME_REQUIRED }}</p>
         }
       </div>
     </div>
@@ -33,16 +33,24 @@
       </p-float-label>
       <div class="error-container">
         @if (editFormGroup.get('role')?.invalid && editFormGroup.get('role')?.touched) {
-          <p class="error-message">{{ strings.ROLE_REQUIRED }}</p>
+        <p class="error-message">{{ strings.ROLE_REQUIRED }}</p>
         }
       </div>
     </div>
 
-    <p-button
-      label="{{ strings.SAVE_CHANGES }}"
-      icon="pi pi-check"
-      type="submit"
-      [disabled]="editFormGroup.invalid"
-    ></p-button>
+    <div class="button-group">
+      <p-button
+        label="{{ strings.CANCEL }}"
+        severity="secondary"
+        [outlined]="true"
+        type="button"
+        (onClick)="cancel()"
+      ></p-button>
+      <p-button
+        label="{{ strings.SAVE_CHANGES }}"
+        type="submit"
+        [disabled]="editFormGroup.invalid"
+      ></p-button>
+    </div>
   </form>
 </div>

@@ -14,7 +14,7 @@ export class AuthService {
   private userService = inject(UserService)
   private router = inject(Router)
 
-  constructor() { 
+  constructor() {
     const storedUser = localStorage.getItem('currentUser');
     if (storedUser) {
       this.user.set(JSON.parse(storedUser));
@@ -23,7 +23,7 @@ export class AuthService {
 
   login(email: string, password: string): Observable<boolean> {
     return new Observable<boolean>((observer) => {
-      const user = this.userService.users.find(u => u.email == email && u.password == password)
+      const user = this.userService.users().find(u => u.email == email && u.password == password)
 
       if (!user) {
         observer.error('User not found')
@@ -39,7 +39,7 @@ export class AuthService {
 
   signup(signupReq: User): Observable<boolean> {
     return new Observable<boolean>((observer) => {
-      const user = this.userService.users.find(u => u.email == signupReq.email)
+      const user = this.userService.users().find(u => u.email == signupReq.email)
 
       if (user) {
         observer.error('User already exists please try to login')

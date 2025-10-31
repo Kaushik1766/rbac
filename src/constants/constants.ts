@@ -64,7 +64,8 @@ export const ADD_USER_STRINGS = {
   NAME_REQUIRED: 'Name is required',
   INVALID_EMAIL: 'Invalid email',
   EMAIL_REQUIRED: 'Email is required',
-  ROLE_REQUIRED: 'Role is required'
+  ROLE_REQUIRED: 'Role is required',
+  CANCEL: 'Cancel'
 };
 
 export const EDIT_USER_STRINGS = {
@@ -72,5 +73,6 @@ export const EDIT_USER_STRINGS = {
   ROLE: 'Role',
   SAVE_CHANGES: 'Save Changes',
   NAME_REQUIRED: 'Name is required',
-  ROLE_REQUIRED: 'Role is required'
+  ROLE_REQUIRED: 'Role is required',
+  CANCEL: 'Cancel'
 };

@@ -35,14 +35,14 @@ export class AnnouncementsComponent {
   private authService = inject(AuthService);
   private announcementService = inject(AnnouncementService);
 
-  strings = ANNOUNCEMENTS_STRINGS;
+  readonly strings = ANNOUNCEMENTS_STRINGS;
 
   announcementFormGroup = new FormGroup({
-    title: new FormControl("", {
+    title: new FormControl('', {
       validators: [Validators.required],
       updateOn: "change",
     }),
-    content: new FormControl("", {
+    content: new FormControl('', {
       validators: [Validators.required],
       updateOn: "change",
     }),
@@ -53,7 +53,7 @@ export class AnnouncementsComponent {
       this.announcementService.addAnnouncement({
         title: this.announcementFormGroup.value.title!,
         content: this.announcementFormGroup.value.content!,
-        date: new Date(),
+        date: new Date()
       });
       this.announcementFormGroup.reset();
     }
@@ -66,6 +66,6 @@ export class AnnouncementsComponent {
   get announcements(): Announcement[] {
     return this.announcementService
       .announcements()
-      .sort((a, b) => b.date.getTime() - a.date.getTime());
+      .sort((announcement1, announcement2) => announcement2.date.getTime() - announcement1.date.getTime());
   }
 }

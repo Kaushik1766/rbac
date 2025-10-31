@@ -31,6 +31,7 @@ export class EditComponent {
 
   user = input.required<User>();
   @Output() userUpdated = new EventEmitter<void>();
+  @Output() cancelled = new EventEmitter<void>();
 
   readonly strings = EDIT_USER_STRINGS;
 
@@ -71,6 +72,10 @@ export class EditComponent {
       role: this.editFormGroup.value.role!
     });
     this.userUpdated.emit();
+  }
+
+  cancel(): void {
+    this.cancelled.emit();
   }
 
   get roles(): { label: string; value: Role }[] {

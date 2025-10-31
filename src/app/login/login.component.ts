@@ -1,19 +1,20 @@
 import { Component, DestroyRef, inject } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
 import { ButtonModule } from 'primeng/button';
 import { FloatLabel } from 'primeng/floatlabel';
 import { InputText } from 'primeng/inputtext';
-import { AuthService } from '../services/auth.service';
 import { MessageService } from 'primeng/api';
-import { Router } from '@angular/router';
 import { ToastModule } from 'primeng/toast';
+
+import { AuthService } from '../services/auth.service';
 import { LOGIN_STRINGS } from '../../constants/constants';
 
 @Component({
   selector: 'app-login',
   imports: [
     ReactiveFormsModule,
-
     FloatLabel,
     InputText,
     ButtonModule,
@@ -29,7 +30,7 @@ export class LoginComponent {
   private destroyRef = inject(DestroyRef);
   private router = inject(Router);
 
-  strings = LOGIN_STRINGS;
+  readonly strings = LOGIN_STRINGS;
 
   loginFormGroup = new FormGroup({
     email: new FormControl('', {
@@ -47,7 +48,7 @@ export class LoginComponent {
   })
 
   login(): void {
-    const sub = this
+    const loginSubscription = this
       .authService
       .login(this.loginFormGroup.value.email!, this.loginFormGroup.value.password!)
       .subscribe({
@@ -65,7 +66,7 @@ export class LoginComponent {
       });
 
     this.destroyRef.onDestroy(() => {
-      sub.unsubscribe();
+      loginSubscription.unsubscribe();
     });
   }
 

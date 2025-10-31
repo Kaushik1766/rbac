@@ -23,6 +23,7 @@ import { ADD_USER_STRINGS } from '../../../../../constants/constants';
 export class AddComponent {
 
   @Output() userAdded = new EventEmitter<User>();
+  @Output() cancelled = new EventEmitter<void>();
 
   readonly strings = ADD_USER_STRINGS;
 
@@ -65,5 +66,10 @@ export class AddComponent {
       this.userAdded.emit(user);
       this.addUserFormGroup.reset({ role: Role.User });
     }
+  }
+
+  cancel(): void {
+    this.cancelled.emit();
+    this.addUserFormGroup.reset({ role: Role.User });
   }
 }

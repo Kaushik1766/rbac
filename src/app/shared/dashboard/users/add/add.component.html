@@ -11,7 +11,7 @@
         </p-float-label>
         <div class="error-container">
             @if (addUserFormGroup.get('name')?.invalid && addUserFormGroup.get('name')?.touched) {
-                <p class="error-message">{{ strings.NAME_REQUIRED }}</p>
+            <p class="error-message">{{ strings.NAME_REQUIRED }}</p>
             }
         </div>
     </div>
@@ -28,14 +28,14 @@
         </p-float-label>
         <div class="error-container">
             @if (addUserFormGroup.get('email')?.invalid && addUserFormGroup.get('email')?.touched) {
-                <p class="error-message">
-                    @if (addUserFormGroup.get('email')?.errors?.['required']) {
-                        {{ strings.EMAIL_REQUIRED }}
-                    }
-                    @if (addUserFormGroup.get('email')?.errors?.['email']) {
-                        {{ strings.INVALID_EMAIL }}
-                    }
-                </p>
+            <p class="error-message">
+                @if (addUserFormGroup.get('email')?.errors?.['required']) {
+                {{ strings.EMAIL_REQUIRED }}
+                }
+                @if (addUserFormGroup.get('email')?.errors?.['email']) {
+                {{ strings.INVALID_EMAIL }}
+                }
+            </p>
             }
         </div>
     </div>
@@ -53,16 +53,24 @@
         </p-float-label>
         <div class="error-container">
             @if (addUserFormGroup.get('role')?.invalid && addUserFormGroup.get('role')?.touched) {
-                <p class="error-message">{{ strings.ROLE_REQUIRED }}</p>
+            <p class="error-message">{{ strings.ROLE_REQUIRED }}</p>
             }
         </div>
     </div>
 
-    <p-button
-        label="{{ strings.ADD_USER_BUTTON }}"
-        icon="pi pi-plus"
-        type="submit"
-        [disabled]="addUserFormGroup.invalid"
-        (onClick)="addUser()"
-    ></p-button>
+    <div class="button-group">
+        <p-button
+            label="{{ strings.CANCEL }}"
+            severity="secondary"
+            [outlined]="true"
+            type="button"
+            (onClick)="cancel()"
+        ></p-button>
+        <p-button
+            label="{{ strings.ADD_USER_BUTTON }}"
+            type="submit"
+            [disabled]="addUserFormGroup.invalid"
+            (onClick)="addUser()"
+        ></p-button>
+    </div>
 </form>

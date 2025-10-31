@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, OnInit, Signal } from '@angular/core';
+import { Component, computed, DestroyRef, effect, inject, OnInit, signal, Signal } from '@angular/core';
 import { UserService } from '../../../services/user.service';
 import { TableModule } from 'primeng/table';
 import { TitleCasePipe } from '@angular/common';
@@ -47,7 +47,6 @@ export class UsersComponent implements OnInit {
 
   currentUser: Signal<User | null> = this.authService.currentUser;
 
-  searchText: string = '';
 
   editVisible: boolean = false;
   addUserVisible: boolean = false;
@@ -56,7 +55,17 @@ export class UsersComponent implements OnInit {
 
   searchControl = new FormControl('');
 
-  filteredUsers: User[] = [];
+  filteredUsers = signal<User[]>([]);
+
+  constructor() {
+    effect(() => {
+      this.userService.users();
+      const currentSearch = this.searchControl.value || '';
+      this.userService.getUsersByEmail(currentSearch).subscribe(users => {
+        this.filteredUsers.set(users);
+      });
+    });
+  }
 
   ngOnInit(): void {
     const subscription = this.searchControl.valueChanges.pipe(
@@ -64,9 +73,8 @@ export class UsersComponent implements OnInit {
       debounceTime(300),
       distinctUntilChanged(),
       switchMap(value => this.userService.getUsersByEmail(value || ''))
-    ).subscribe(value => {
-      console.log(value);
-      this.filteredUsers = value;
+    ).subscribe(users => {
+      this.filteredUsers.set(users);
     });
 
     this.destroyRef.onDestroy(() => {
@@ -117,10 +125,6 @@ export class UsersComponent implements OnInit {
         this.userService.removeUserByEmail(userEmail);
       }
     });
-  }
-
-  get users(): User[] {
-    return this.userService.users.filter(u => u.email.includes(this.searchText));
   }
 
   get isAdmin(): boolean {
