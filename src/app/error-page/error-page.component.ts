@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+
 import { ERROR_PAGE_STRINGS } from '../../constants/constants';
 
 @Component({

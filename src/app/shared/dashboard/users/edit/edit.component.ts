@@ -1,14 +1,15 @@
-import { Component, effect, inject, EventEmitter, Output } from '@angular/core';
+import { Component, effect, EventEmitter, inject, input, Output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { FloatLabel } from 'primeng/floatlabel';
-import { Role, User } from '../../../../models/user';
 import { InputText } from 'primeng/inputtext';
 import { Select } from 'primeng/select';
-import { UserService } from '../../../../services/user.service';
-import { input } from '@angular/core';
+
 import { AuthService } from '../../../../services/auth.service';
+import { UserService } from '../../../../services/user.service';
+import { Role, User } from '../../../../models/user';
 import { EDIT_USER_STRINGS } from '../../../../../constants/constants';
 
 @Component({

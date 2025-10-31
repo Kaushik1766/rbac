@@ -1,6 +1,5 @@
-import { DatePipe } from '@angular/common';
 import { Component, input } from '@angular/core';
-
+import { DatePipe } from '@angular/common';
 
 type CardData = {
   title: string;

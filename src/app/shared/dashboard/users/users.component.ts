@@ -1,20 +1,22 @@
 import { Component, computed, DestroyRef, effect, inject, OnInit, signal, Signal } from '@angular/core';
-import { UserService } from '../../../services/user.service';
-import { TableModule } from 'primeng/table';
 import { TitleCasePipe } from '@angular/common';
-import { Button } from "primeng/button";
-import { InputText } from 'primeng/inputtext';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AuthService } from '../../../services/auth.service';
-import { Role, User } from '../../../models/user';
-import { EditComponent } from './edit/edit.component';
-import { Dialog } from "primeng/dialog";
+
+import { Button } from "primeng/button";
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { AddComponent } from './add/add.component';
+import { Dialog } from "primeng/dialog";
+import { InputText } from 'primeng/inputtext';
+import { TableModule } from 'primeng/table';
 import { Toast } from "primeng/toast";
-import { USERS_STRINGS } from '../../../../constants/constants';
 import { debounceTime, distinctUntilChanged, from, fromEvent, startWith, switchMap } from 'rxjs';
+
+import { AddComponent } from './add/add.component';
+import { EditComponent } from './edit/edit.component';
+import { AuthService } from '../../../services/auth.service';
+import { UserService } from '../../../services/user.service';
+import { Role, User } from '../../../models/user';
+import { USERS_STRINGS } from '../../../../constants/constants';
 
 @Component({
   selector: 'app-users',

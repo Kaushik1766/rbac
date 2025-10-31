@@ -1,20 +1,16 @@
-import { Component } from "@angular/core";
-import { CardComponent } from "./card/card.component";
-import {
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from "@angular/forms";
-import { FloatLabel } from "primeng/floatlabel";
+import { Component, inject } from "@angular/core";
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+
 import { ButtonModule } from "primeng/button";
+import { FloatLabel } from "primeng/floatlabel";
 import { InputTextModule } from "primeng/inputtext";
 import { TextareaModule } from "primeng/textarea";
-import { inject } from "@angular/core";
-import { AuthService } from "../../../services/auth.service";
-import { Role } from "../../../models/user";
+
+import { CardComponent } from "./card/card.component";
 import { AnnouncementService } from "../../../services/announcement.service";
+import { AuthService } from "../../../services/auth.service";
 import { Announcement } from "../../../models/announcement";
+import { Role } from "../../../models/user";
 import { ANNOUNCEMENTS_STRINGS } from '../../../../constants/constants';
 
 @Component({

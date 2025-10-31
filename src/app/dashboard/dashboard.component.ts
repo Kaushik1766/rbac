@@ -1,10 +1,12 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet, Router, Routes, RouterLink } from '@angular/router';
-import { AuthService } from '../services/auth.service';
+
 import { Button } from 'primeng/button';
+
+import { AuthService } from '../services/auth.service';
 import { Role } from '../models/user';
-import { managerRoutes } from './manager/manager.routes';
 import { adminRoutes } from './admin/admin.routes';
+import { managerRoutes } from './manager/manager.routes';
 import { userRoutes } from './user/user.routes';
 import { DASHBOARD_STRINGS } from '../../constants/constants';
 

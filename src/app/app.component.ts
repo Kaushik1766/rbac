@@ -1,5 +1,6 @@
 import { Component, HostListener, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+
 import { ThemingService } from './services/theming.service';
 import { ThemeSwitchComponent } from './shared/theme-switch/theme-switch.component';
 
@@ -7,7 +8,7 @@ import { ThemeSwitchComponent } from './shared/theme-switch/theme-switch.compone
   selector: 'app-root',
   imports: [
     RouterOutlet,
-    
+
     ThemeSwitchComponent
   ],
   templateUrl: './app.component.html',
